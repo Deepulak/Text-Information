@@ -1,0 +1,4 @@
+https://linuxconfig.org/setting-up-the-python-virtualenv-development-environment-on-debian-linux
+
+
+https://stackoverflow.com/questions/62314556/how-to-install-virtualenv-on-ubuntu-20-04-gcp-instance

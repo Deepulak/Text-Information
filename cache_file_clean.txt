@@ -1,0 +1,30 @@
+check linux cache memory
+
+free -m
+
+clear page cache only
+
+run on root permission
+
+sync; echo 1 > /proc/sys/vm/drop_caches
+
+clear page cache every day through crontab
+
+save this file with sh
+#!/bin/sh
+sudo sh -c "sync; echo 1 > /proc/sys/vm/drop_caches
+
+
+clear dentries and inodes only
+sync; echo 2 > /proc/sys/vm/drop_caches
+
+for everday
+create a file again
+
+then type
+
+#!/bin/sh
+sudo sh -c "sync; echo 2 > /proc/sys/vm/drop_caches"
+
+
+

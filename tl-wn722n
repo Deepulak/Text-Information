@@ -1,0 +1,46 @@
+in here we are installing and trying to get monitor mode 
+on our adapter
+
+this is the helpful site
+
+https://github.com/aircrack-ng/rtl8188eus
+
+Howto build/install
+
+    You will need to blacklist another driver in order to use this one.
+    echo "blacklist r8188eu" >> "/etc/modprobe.d/realtek.conf"
+    make && make install
+    Reboot in order to blacklist and load the new driver/module.
+
+MONITOR MODE howto
+
+Use these steps to enter monitor mode.
+
+$ sudo airmon-ng check kill
+$ sudo ip link set <interface> down
+$ sudo iw dev <interface> set type monitor
+
+Frame injection test may be performed with (after kernel v5.2 scanning is slow, run a scan or simply an airodump-ng first!)
+
+$ aireplay -9 <interface>
+
+
+NetworkManager configuration
+
+Add these lines below to "NetworkManager.conf" and ADD YOUR ADAPTER MAC below [keyfile] This will make the Network-Manager ignore the device, and therefore don't cause problems.
+
+[device]
+wifi.scan-rand-mac-address=no
+
+[ifupdown]
+managed=false
+
+[connection]
+wifi.powersave=0
+
+[main]
+plugins=keyfile
+
+[keyfile]
+unmanaged-devices=mac:A7:A7:A7:A7:A7
+

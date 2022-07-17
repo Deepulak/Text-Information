@@ -1,0 +1,7 @@
+install the driver
+
+isntall virtualenv and try to work on dlib
+
+and also with pyaudio
+
+

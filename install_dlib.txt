@@ -1,0 +1,138 @@
+Install OS libraries
+
+
+sudo apt install libboost-all-dev
+sudo apt-get install build-essential cmake pkg-config
+sudo apt-get install libx11-dev libatlas-base-dev
+sudo apt-get install libgtk-3-dev libboost-python-dev
+
+Install Python libraries
+
+sudo apt-get install python-dev python-pip python3-dev python3-pip
+sudo -H pip2 install -U pip numpy
+sudo -H pip3 install -U pip numpy
+
+
+We will use Virtual Environment to install Python libraries. It is generally a good practice in order to separate your project environment and global environment
+
+# Install virtual environment
+sudo pip2 install virtualenv virtualenvwrapper
+sudo pip3 install virtualenv virtualenvwrapper
+echo "# Virtual Environment Wrapper" >> ~/.bashrc
+echo "source /usr/local/bin/virtualenvwrapper.sh" >> ~/.bashrc
+source ~/.bashrc
+ 
+############ For Python 2 ############
+# create virtual environment
+mkvirtualenv facecourse-py2 -p python2
+workon facecourse-py2
+ 
+# now install python libraries within this virtual environment
+pip install numpy scipy matplotlib scikit-image scikit-learn ipython
+ 
+# quit virtual environment
+deactivate
+######################################
+ 
+############ For Python 3 ############
+# create virtual environment
+mkvirtualenv facecourse-py3 -p python3
+workon facecourse-py3
+ 
+# now install python libraries within this virtual environment
+pip install numpy scipy matplotlib scikit-image scikit-learn ipython
+ 
+# quit virtual environment
+deactivate
+######################################
+
+Davis King, creator of Dlib, recommends using CMake for using Dlib in your code.
+But if you want to use Dlib as a library follow these steps:
+
+wget http://dlib.net/files/dlib-19.6.tar.bz2
+tar xvf dlib-19.6.tar.bz2
+cd dlib-19.6/
+mkdir build
+cd build
+cmake ..
+cmake --build . --config Release
+sudo make install
+sudo ldconfig
+cd ..
+
+
+Now you can use pkg-config to provide path to Dlib’s include directory and link Dlib library file.
+
+pkg-config --libs --cflags dlib-1
+
+
+Compile Python module
+Activate Python virtual environment
+
+
+############ For Python 2 ############
+workon facecourse-py2
+
+############ For Python 3 ############
+workon facecourse-py3
+
+
+Now let’s compile and install Dlib’s Python module.
+
+
+# move to dlib's root directory
+cd dlib-19.6
+python setup.py install
+# clean up(this step is required if you want to build dlib for both Python2 and Python3)
+rm -rf dist
+rm -rf tools/python/build
+rm python_examples/dlib.so
+
+If you are going to use only Python module of Dlib you can also install Python bindings for Dlib using pip.
+1
+	pip install dlib
+
+Now you can exit from Python virtual environment.
+1
+	deactivate
+
+Now, whenever you are going to run Python scripts which use Dlib you have to activate the virtual environment using workon command.
+Subscribe & Download Code
+
+If you liked this article and would like to download code (C++ and Python) and example images used in all posts of this blog, please subscribe to our newsletter. You will also receive a free Computer Vision Resource Guide. In our newsletter, we share OpenCV tutorials and examples written in C++/Python, and Computer Vision and Machine Learning algorithms and news.
+
+Subscribe Now
+Tags: C++ dlib Dlib 19.4 Dlib 19.5 Dlib 19.6 Python ubuntu
+About
+
+I am an entrepreneur with a love for Computer Vision and Machine Learning with a dozen years of experience (and a Ph.D.) in the field.
+
+In 2007, right after finishing my Ph.D., I co-founded TAAZ Inc. with my advisor Dr. David Kriegman and Kevin Barnes. The scalability, and robustness of our computer vision and machine learning algorithms have been put to rigorous test by more than 100M users who have tried our products. Read More…
+Getting Started
+
+    Installation
+    PyTorch
+    Keras & Tensorflow
+    Resource Guide
+
+Resources
+Download Code (C++ / Python)
+ENROLL IN OFFICIAL OPENCV COURSES
+I've partnered with OpenCV.org to bring you official courses in Computer Vision, Machine Learning, and AI.
+Learn More
+Recent Posts
+
+    Making A Low-Cost Stereo Camera Using OpenCV
+    Optical Flow in OpenCV (C++/Python)
+    Introduction to Epipolar Geometry and Stereo Vision
+    Depth Estimation using Stereo matching
+    Classification with Localization: Convert any Keras Classifier to a Detector
+
+Disclaimer
+
+All views expressed on this site are my own and do not represent the opinions of OpenCV.org or any entity whatsoever with which I have been, am now, or will be affiliated.
+
+
+
+
+

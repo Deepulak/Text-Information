@@ -1,0 +1,79 @@
+
+How to Create Python Virtual Environment in Ubuntu Linux
+
+In this tutorial we are going to learn how to setup python virtual environment in Ubuntu Linux.
+
+Python Virtual environments allow to create Isolated development environments for each of our python projects. Anything you do inside the Virtual environment will not have any effect on your local environment. It is a great way to develop your Python Project, So let’s see.
+
+First, we need to install python pip command on Ubuntu Linux. Open your Ubuntu terminal and Type:
+
+sudo apt-get update
+sudo apt-get install python3-pip
+
+Then, We use pip command to install virtualenvwrapper package which provides the tools we need to create Python Virtual environments on Ubuntu Linux.
+
+sudo -H pip3 install virtualenvwrapper
+
+install python virtualenvwrapper package on ubuntu
+
+Next, we need to add a couple of environment variables to the .bashrc file (You can find .bashrc file in your home folder).
+
+Open the .bashrc file using a text editor.
+
+vim ~/.bashrc
+
+Then, add the following settings at the end of the file.
+
+# Python Virtualenv Settings
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.5
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/python_projects
+source /usr/local/bin/virtualenvwrapper.sh
+
+
+# Python Virtualenv Settings
+export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python3.8
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/lens
+source /.local/bin/virtualenvwrapper.sh
+
+    VIRTUALENVWRAPPER_PYTHON will be the default Python version for our virtual environments, on my Ubuntu system I use python3.5 (We can override this when we create a virtualenv, if we want to use different python version).
+    PROJECT_HOME is where we keep our project files. You can use your own project folder.
+
+After adding Python Virtualenv Settings, update the .bashrc file.
+
+source ~/.bashrc
+
+Create New Python Virtualenv
+
+To setup a New Virtual environment, we use mkvirtualenv command followed by the name of the virtualenv. For example, to create new a python virtualenv called virtualenv1, Type:
+
+mkvirtualenv virtualenv1
+
+To set python version, use the -p option of the mkvirtualenv command. For example, to set up new virtualenv with python2.7, Type:
+
+mkvirtualenv -p /usr/bin/python2.7 virtualenv2
+
+When you create a new python virtualenv, automatically you will be redirect to the new Virtual environment on your Ubuntu terminal. You should see the name of the virtual environment at the beginning of the command line.
+
+To exit from the virtual environment, use the deactivate command.
+
+deactivate
+
+To login to a virtual environment, use the workon command followed by the name of the virtual environment.
+
+workon virtualenv1
+
+create python virtualenv on ubuntu linux
+
+Inside the virtual environment you can start your new python project, and start adding new libraries. For example, if you want to start new a Django project, Go to the virtual environment and install Django framework using the python pip command.
+
+pip install django
+
+Then Move into the project folder and start the new project.
+
+django-admin startproject project1
+
+install Django framework python virtual environment
+
+With virtualenvwrapper we can easily create isolated development environments. For example, if you’re working on two python projects, and one requires Django 1.7 but the other project requires Django 1.8, you can easily run both on your system thanks to the Python virtualenvwrapper.
